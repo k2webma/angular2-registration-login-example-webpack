@@ -1,6 +1,15 @@
 ﻿import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend, RequestOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
+/**
+ * The fake backend provider enables the example to run without a backend / backendless,
+ * it uses HTML5 local storage for storing registered user data and provides fake implementations for authentication and CRUD methods,
+ * these would be handled by a real api and database in a production application.
+ *
+ * It uses the Angular 2 MockBackend to replace the default backedn used by the Http service,
+ * the MockBackend enables you to intercept http requests made within the application and provide fake responses,
+ * it's also used for unit testing.
+ */
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
     // array in local storage for registered users
     let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
